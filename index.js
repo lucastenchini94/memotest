@@ -1,6 +1,7 @@
 const colores = ["rojo", "rojo", "amarillo", "amarillo", "verde", "verde", "negro", "negro", "blanco", "blanco"];
 const $cuadros = document.querySelectorAll(".cuadro");
 const $tablero = document.querySelector(".container")
+let $primerCuadro = null;
 function configurarJuego() {
     ordenarCuadrosAleat($cuadros, colores)
     manejarEvento()
@@ -25,6 +26,22 @@ function manejarEvento(){
         const $elemento = e.target;
         if($elemento.classList.contains("cuadro")){
             mostrarCuadro($elemento);
+            if ($primerCuadro === null){
+                $primerCuadro = $elemento;
+            } else {
+                if($primerCuadro === $elemento){
+                    return;
+                }
+
+                if(cuadrosSonIguales($primerCuadro, $elemento)){
+                    eliminarCuadro($primerCuadro)
+                    eliminarCuadro($elemento)
+                } else {
+                    ocultarCuadro($primerCuadro);
+                    ocultarCuadro($elemento);
+                }
+                $primerCuadro = null;
+            }
             ocultarCuadro($elemento);
         }
     }
