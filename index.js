@@ -3,6 +3,7 @@ const $cuadros = document.querySelectorAll(".cuadro");
 const $tablero = document.querySelector(".container")
 function configurarJuego() {
     ordenarCuadrosAleat($cuadros, colores)
+    manejarEvento()
 }
 function ordenarCuadrosAleat ($cuadros, colores){
     const coloresAleatorios = colores.sort(function(){
@@ -19,3 +20,25 @@ function ordenarCuadrosAleat ($cuadros, colores){
         
     }
 }
+function manejarEvento(){
+    $tablero.onclick = function(e){
+        const $elemento = e.target;
+        if($elemento.classList.contains("cuadro")){
+            mostrarCuadro($elemento);
+            ocultarCuadro($elemento);
+        }
+    }
+}
+
+
+function mostrarCuadro($cuadro) {
+    $cuadro.style.opacity = 1;
+  }
+  
+  function ocultarCuadro($cuadro) {
+    setTimeout(function() {
+      $cuadro.style.opacity = 0;
+    }, 500);
+  
+  }
+configurarJuego();
