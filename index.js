@@ -53,9 +53,19 @@ function mostrarCuadro($cuadro) {
   }
   
   function ocultarCuadro($cuadro) {
+function ocultarCuadro($cuadro) {
     setTimeout(function() {
       $cuadro.style.opacity = 0;
     }, 500);
   
+}
+function cuadrosSonIguales($cuadro1, $cuadro2) {
+    return $cuadro1.className === $cuadro2.className;
+}
+function eliminarCuadro($cuadro) {
+    setTimeout(function() {
+      $cuadro.parentElement.classList.add('completo');
+      $cuadro.remove();
+    }, 500);
   }
 configurarJuego();
