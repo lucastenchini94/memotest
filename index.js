@@ -1,4 +1,4 @@
-const colores = ["rojo", "rojo", "amarillo", "amarillo", "verde", "verde", "negro", "negro", "blanco", "blanco"];
+const colores = ["rojo", "rojo", "amarillo", "amarillo", "verde", "verde", "negro", "negro", "blanco", "blanco", "azul", "azul"];
 const $cuadros = document.querySelectorAll(".cuadro");
 const $tablero = document.querySelector(".container")
 
@@ -52,7 +52,7 @@ function manejarEvento(){
                 }
                 $primerCuadro = null;
             }
-            ocultarCuadro($elemento);
+           
         }
     }
 }
