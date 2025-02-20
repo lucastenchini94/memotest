@@ -1,11 +1,21 @@
 const colores = ["rojo", "rojo", "amarillo", "amarillo", "verde", "verde", "negro", "negro", "blanco", "blanco"];
 const $cuadros = document.querySelectorAll(".cuadro");
 const $tablero = document.querySelector(".container")
+
+const $tituloSecundario = document.querySelector("h2")
 let $primerCuadro = null;
+let contadorExitos = 0 ;
+
 function configurarJuego() {
     ordenarCuadrosAleat($cuadros, colores)
     manejarEvento()
 }
+
+
+
+
+
+
 function ordenarCuadrosAleat ($cuadros, colores){
     const coloresAleatorios = colores.sort(function(){
         return 0.5 - Math.random();
@@ -52,7 +62,6 @@ function mostrarCuadro($cuadro) {
     $cuadro.style.opacity = 1;
   }
   
-  function ocultarCuadro($cuadro) {
 function ocultarCuadro($cuadro) {
     setTimeout(function() {
       $cuadro.style.opacity = 0;
@@ -64,8 +73,21 @@ function cuadrosSonIguales($cuadro1, $cuadro2) {
 }
 function eliminarCuadro($cuadro) {
     setTimeout(function() {
+      $cuadro.parentElement.append("comparacion exitosa")
       $cuadro.parentElement.classList.add('completo');
       $cuadro.remove();
+      analizarFinJuego()
     }, 500);
+    
   }
+function analizarFinJuego() {
+    contadorExitos++;
+    if (contadorExitos>=12) {
+        $tablero.remove();
+        $tituloSecundario.innerHTML=("Felicitaciones Terminaste el juego");
+        
+
+    }
+    console.log(contadorExitos)
+}
 configurarJuego();
